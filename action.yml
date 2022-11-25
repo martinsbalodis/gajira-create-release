@@ -1,5 +1,5 @@
-name: Jira Create issue
-description: Create a new Jira issue
+name: Jira Create release
+description: Create a new Jira release
 branding:
   icon: 'check-square'
   color: 'blue'
@@ -7,21 +7,12 @@ inputs:
   project:
     description: Key of the project
     required: true
-  issuetype:
-    description: "Type of the issue to be created. Example: 'Incident'"
+  name:
+    description: "Release name"
     required: true
-  summary:
-    description: Issue summary
-    required: true
-  description:
-    description: Issue description
-    required: false
-  fields:
-    description: Additional fields in JSON format
-    required: false
 outputs:
   issue:
-    description: Key of the newly created issue
+    description: Id of the newly created release
 runs:
   using: 'node16'
   main: './dist/index.js'
