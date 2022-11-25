@@ -1,5 +1,5 @@
-# Jira Create
-Create new issue
+# Jira Release Create
+Create new release
 
 > ##### Only supports Jira Cloud. Does not support Jira Server (hosted)
 
@@ -8,18 +8,15 @@ Create new issue
 > ##### Note: this action requires [Jira Login Action](https://github.com/marketplace/actions/jira-login)
 
 ```yaml
-- name: Create
+- name: Create Release
   id: create
-  uses: atlassian/gajira-create@v3
+  uses: martinsbalodis/gajira-create-release@latest
   with:
     project: GA
-    issuetype: Build
-    summary: Build completed for ${{ github.repository }}
-    description: Compare branch
-    fields: '{"customfield_10171": "test"}'
+    name: new-release
 
-- name: Log created issue
-  run: echo "Issue ${{ steps.create.outputs.issue }} was created"
+- name: Log created release
+  run: echo "Issue ${{ steps.create.outputs.release }} was created"
 ```
 
 ----
@@ -30,22 +27,16 @@ Create new issue
 
 ### Inputs
 - `project` (required) - Key of the project
-- `issuetype` (required) - Type of the issue to be created. Example: 'Incident'
-- `summary` (required) - Issue summary
-- `description` - Issue description
-- `fields` - Additional fields in JSON format
+- `name` (required) - Release name. Example: 'Product v1.3.5'
 
 ### Outputs
-- `issue` - Key of the newly created issue
+- `release` - id of the newly created release
 
 ### Reads fields from config file at $HOME/jira/config.yml
 - `project`
-- `issuetype`
-- `summary`
-- `description`
 
 ### Writes fields to config file at $HOME/jira/config.yml
-- `issue` - a key of a newly created issue
+- `release` - a key of a newly created release
 
 ### Writes fields to CLI config file at $HOME/.jira.d/config.yml
-- `issue` - a key of a newly created issue
+- `release` - a key of a newly created release
